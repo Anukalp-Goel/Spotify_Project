@@ -41,11 +41,24 @@ This project involves extracting and analyzing data from the Spotify API. The go
 
 ---
 
+### **Today's Progress:**
+#### **Visual Studio Code (VS Code):**
+1. **Zen Mode:** Focused workspace for distraction-free coding.  
+2. **Command Palette:** Efficiently executed commands and navigated features.  
+3. **Minimap:** Visualized code structure for quick navigation.  
+4. **Shortcuts:** Leveraged key bindings to enhance productivity.  
+5. **Emmet:** Used shortcuts for faster HTML and CSS coding.  
+6. **Snippets:** Created and used reusable code templates.  
+7. **Run and Debug:** Learned to debug Python scripts and run code directly in VS Code.
+
+---
+
 ## **Future Scope**
 1. Perform exploratory data analysis on the extracted data.
 2. Visualize trends and insights using tools like Python and Tableau.
 3. Experiment with advanced features like OAuth authentication (required for Spotify API).  
 4. Implement error-handling mechanisms to build robust API integrations.  
+5. Leverage VS Code features to streamline project development.
 
 ---
 
