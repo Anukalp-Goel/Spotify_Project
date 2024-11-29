@@ -1,6 +1,7 @@
+```markdown
 # Spotify_Project
 
-This project involves extracting and analyzing data from the Spotify API. The goal is to explore and understand various endpoints of the Spotify API, retrieve data, and analyze it for insights.
+This project involves extracting and analyzing data from the Spotify API. The goal is to explore and understand various endpoints of the Spotify API, retrieve data, and analyze it for insights. The project will evolve daily with updates logged on GitHub.
 
 ---
 
@@ -8,58 +9,74 @@ This project involves extracting and analyzing data from the Spotify API. The go
 
 ### **Data Extraction**
 1. Select and connect to a suitable API (e.g., Spotify API).  
-2. Understand API types (e.g., REST API) and how to connect using different authentication methods.  
-3. Learn about endpoints and identify those relevant for the project using documentation.  
+   - Explore public APIs: [Public APIs](https://github.com/public-apis/public-apis).  
+2. Understand different types of APIs (e.g., REST API) and how to connect using various authentication methods.  
+3. Learn about endpoints and identify relevant ones for the project using documentation.  
 4. Extract and parse data into readable/tabular formats.  
-5. Extract data from multiple endpoints to create a cohesive data model.  
+5. Extract data from multiple endpoints to create a cohesive data model.
 
 ---
 
-## **Current Progress**
-### **Learned Concepts:**
-- **Role of APIs:** Understand how APIs act as bridges between systems, enabling communication and data exchange.
-- **Types of APIs:** Explored REST, SOAP, GraphQL, and other common API types.  
-- **URL Components:** Gained knowledge of how URLs are structured for API requests (protocol, base URL, endpoints, parameters).  
-- **Anatomy of Request and Response Messages:** Learned about headers, body, status codes, and their roles in API communication.  
-- **HTTP Verbs:** Mastered the purpose of methods like GET, POST, PUT, DELETE.
-
-### **Working with Python:**
-- **Requests Package:** Familiarized with the Python `requests` library for making API calls.  
-- **HTTP Methods in Python:** Sent GET and POST requests using Python.  
-- **URL Parameters:** Learned how to add query parameters to API requests.  
-- **Headers and Status Codes:** Understood how to work with headers for authentication and identify status codes for response validation.  
-
-### **Authentication:**
-- Explored basic authentication methods and API-specific authentication techniques.  
-
-### **Working with JSON Data:**
-- **Requesting JSON:** Fetched structured JSON data from APIs.  
-- **Sending JSON:** Sent JSON data in POST requests for creating or updating resources.  
-
-### **Error Handling:**
-- Learned about connection errors and HTTP errors, including how to manage them in Python.
+## **Expanded Scope**
+### **API Connection**
+- **Platform:** Spotify API.  
+- **Tools:** Python and Visual Studio Code (VS Code).  
+- **Additional Concepts:**  
+  - Error handling during API calls.  
+  - Using Dask for efficient data processing.  
 
 ---
 
-### **Today's Progress:**
-#### **Visual Studio Code (VS Code):**
-1. **Zen Mode:** Focused workspace for distraction-free coding.  
-2. **Command Palette:** Efficiently executed commands and navigated features.  
-3. **Minimap:** Visualized code structure for quick navigation.  
-4. **Shortcuts:** Leveraged key bindings to enhance productivity.  
-5. **Emmet:** Used shortcuts for faster HTML and CSS coding.  
-6. **Snippets:** Created and used reusable code templates.  
-7. **Run and Debug:** Learned to debug Python scripts and run code directly in VS Code.
+### **Data Parsing and Modeling**
+#### **Key Elements to Extract:**
+- **Tracks**: Retrieve details for individual tracks.  
+- **Albums**: Gather album information for tracks.  
+- **Artists**: Fetch artist details and metadata.  
+- **Genres**: Retrieve associated genres for tracks/artists.  
+- **Playlists**: Analyze popular playlists and their contents.
+
+#### **Workflow Steps:**
+1. **Get a Popular Playlist**:  
+   - Extract playlist details.  
+2. **Track Information**:  
+   - Use the track IDs from the playlist to get detailed information about each track.  
+3. **Artist Information**:  
+   - Retrieve artist details for all tracks in Step 2.  
+4. **Genre Information**:  
+   - Extract genres for all tracks/artists in Step 2.  
+5. **Album Information**:  
+   - Retrieve album details for all tracks in Step 2.  
+6. **Audio Features**:  
+   - Extract track audio features for further analysis.  
+
+---
+
+### **Data Modeling**
+- **Logical Layer:**  
+  - Normalize the data to avoid redundancy and establish relationships between elements.  
+  - Design a schema for entities like `Tracks`, `Albums`, `Artists`, `Genres`, and `Playlists`.  
+- **Physical Layer:**  
+  - Build physical tables in a MySQL server.  
+
+---
+
+### **Data Transformation**
+1. **File Dumping Ground:**  
+   - Save raw API responses as CSV files locally.  
+2. **Schema Finalization:**  
+   - Model data logically and finalize a schema with table structure and columns.  
+3. **Data Transformation Script:**  
+   - Use Python to process CSV files, transform the data, and create tables in the MySQL server.
 
 ---
 
 ## **Future Scope**
-1. Perform exploratory data analysis on the extracted data.
-2. Visualize trends and insights using tools like Python and Tableau.
-3. Experiment with advanced features like OAuth authentication (required for Spotify API).  
-4. Implement error-handling mechanisms to build robust API integrations.  
-5. Leverage VS Code features to streamline project development.
+1. Perform exploratory data analysis on the transformed data.  
+2. Visualize trends and insights using Python and Tableau.  
+3. Optimize API calls and implement rate-limiting strategies.  
+4. Expand the schema to include additional Spotify data elements if needed.
 
 ---
 
-Stay tuned for updates as the project evolves!
+Stay tuned for daily updates as the project progresses!
+```
