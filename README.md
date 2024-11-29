@@ -44,6 +44,17 @@ This project involves extracting and analyzing data from the Spotify API. The go
   - **Emmet and Snippets:** Writing reusable code efficiently.  
   - **Run and Debug:** Testing and debugging Python scripts.  
 
+### **Day 4: Connecting to the Spotify API**
+
+Today, I successfully implemented the process to connect to the Spotify API. This involved:  
+- Learning how to obtain an **access token** using the Spotify API's token endpoint.  
+- Using **client credentials** for API authentication.  
+- Sending a **POST request** to retrieve the token and understanding how to store and use it for subsequent requests.  
+- Developing a script to retrieve artist details by making a **GET request** to the Spotify API using the access token.  
+- Handling authentication headers and understanding the structure of API responses.  
+
+This marks a significant step towards automating data extraction from the Spotify API for analysis.
+
 ---
 
 ## **Updated Scope**
