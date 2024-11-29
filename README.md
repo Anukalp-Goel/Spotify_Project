@@ -1,4 +1,3 @@
-```markdown
 # Spotify_Project
 
 This project involves extracting and analyzing data from the Spotify API. The goal is to explore and understand various endpoints of the Spotify API, retrieve data, and analyze it for insights. The project will evolve daily with updates logged on GitHub.
@@ -79,4 +78,3 @@ This project involves extracting and analyzing data from the Spotify API. The go
 ---
 
 Stay tuned for daily updates as the project progresses!
-```
