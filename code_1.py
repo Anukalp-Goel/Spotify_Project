@@ -2,9 +2,9 @@
 
 import requests
 from dotenv import load_dotenv
-import os
+import os # to run load_dotenv
 
-# Define the URL
+# Define the URL for API token
 url = "https://accounts.spotify.com/api/token"
 
 # Define the headers
@@ -46,9 +46,9 @@ headers = {
 response = requests.get(artists_url, headers=headers)
 
 # Print the response
-print("Status Code:", response.status_code)
-print("Response JSON:", response.json())
-print("\n\n")
+# print("Status Code:", response.status_code)
+# print("Response JSON:", response.json())
+# print("\n\n")
 
 
 ## to get a sample playlist
@@ -70,43 +70,106 @@ data = response.json()
 
 # Print the response
 print("Status Code:", response.status_code)
-print("Response JSON:", data['name'])
+
+processed_data = [] # a list to hold the processed rows
+playlist_id = data['id']
+playlist_name = data['name']
+
+for x in data['tracks']['items']:
+
+    # Access the 'track' dictionary
+    track = x['track']
+
+    # Extract the required fields
+    track_id = track['id']
+    track_name = track['name']
+    track_duration = track['duration_ms']
+    track_popularity = track['popularity']
+    album_id = track['album']['id']
+    album_name = track['album']['name']
+    album_release_date = track['album']['release_date']
+    artist_ids = [artist['id'] for artist in track['artists']]
+
+    # Append the data as a dictionary
+    processed_data.append({
+        'track_id' : track_id,
+        'track_name' : track_name,
+        'track_duration' : track_duration,
+        'track_popularity' : track_popularity,
+        'album_id': album_id,
+        'album_name': album_name,
+        'album_release_date': album_release_date,
+        'artist_ids': ", ".join(artist_ids),  # Convert list of artists to a string
+    })
 
 
-data2 =  data['tracks']['items']
-print(type(data2))
+# Convert the list of dictionaries into a pandas DataFrame
+
+import pandas as pd
+df = pd.DataFrame(processed_data)
+
+# Display the resulting DataFrame
+print(df.head())
+
+from sqlalchemy import create_engine
+
+# Define your database connection
+connection_string = f"mysql+pymysql://root:{os.getenv('SQL_password')}@localhost/spotify_data"
+engine = create_engine(connection_string)
+
+# Export the DataFrame to the SQL database
+table_name = "playlist"
+
+# Write the DataFrame to the SQL database
+df.to_sql(name=table_name, con=engine, if_exists='replace', index=False)
+
+print(f"Data successfully exported to the {table_name} table.")
+
+#import the data for all the artists in a artist table for all the artitsts in the playlist tracks
+unique_artist_ids = df['artist_ids'].str.split(', ').explode().unique()
+
+## to get the table for artists
+processed_artist_data = [] # a list to hold the processed rows
+# Define the URL
+for artist_id in unique_artist_ids:
+    artists_url = f"https://api.spotify.com/v1/artists/{artist_id}"
+
+    # Define the headers with the Authorization Bearer token
+    headers = {
+        "Authorization" : f"Bearer {token['access_token']}'"
+    }
+
+    # Make the GET request
+    response = requests.get(artists_url, headers=headers)
+
+    data = response.json()
+        
+    # Extract the required fields
+    id = data['id']
+    name = data['name']
+    popularity = data['popularity']
+    followers = data['followers']['total']
+
+    # Append the data as a dictionary
+    processed_artist_data.append({
+        'id' : id,
+        'name' : name,
+        'popularity' : popularity,
+        'followers' : followers,
+    })
 
 
-# print(data2[0])
+# Convert the list of dictionaries into a pandas DataFrame
 
-data3 = data2[0]['track']['album']
-print(type(data3))
+df_art = pd.DataFrame(processed_artist_data)
 
-album_id = data2[0]['track']['album']['id']
-artists = data2[0]['track']['artists']
-name = data2[0]['track']['name']
-duration = data2[0]['track']['duration_ms']
-popularity = data2[0]['track']['popularity']
+# Display the resulting DataFrame
+print(df_art.head())
 
-print(album_id)
-print(artists)
-print(name)
-print(duration)
-print(popularity)
+# Export the DataFrame to the SQL database
+table_name = "artist"
 
-# [print(f"{key}: {value}") for key, value in data.items()]
-# url = data['tracks']['href']
+# Write the DataFrame to the SQL database
+df_art.to_sql(name=table_name, con=engine, if_exists='replace', index=False)
 
-# # Define the headers with the Authorization Bearer token
-# headers = {
-#     "Authorization" : f"Bearer {token['access_token']}'"
-# }
-
-# # Make the GET request
-# response = requests.get(url, headers=headers)
-
-# # Print the response
-# print("Status Code:", response.status_code)
-# print("Response JSON:", response.json())
-
-print("\n\n\n\n")
+print(f"Data successfully exported to the {table_name} table.")
