@@ -233,4 +233,4 @@ table_name = "artist"
 df_art.to_sql(name=table_name, con=engine, if_exists='replace', index=False)
 
 print(f"\n Data successfully exported to the {table_name} table.")
-
+print("done")
